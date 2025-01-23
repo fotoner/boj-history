@@ -2,35 +2,18 @@ import java.util.*;
 
 class Solution {
     public int[] solution(int[] progresses, int[] speeds) {
-        Queue<Integer> qProgress = new LinkedList<>();
-        Queue<Integer> qSpeeds = new LinkedList<>();
-        
+        Queue<Pair<Integer, Integer>> q = new Queue<>();
         ArrayList<Integer> answer = new ArrayList<>();
+        int day = 0;
         
-        for(int i = 0; i < progresses.length; i++) {
-            qProgress.add(progresses[i]);
-            qSpeeds.add(speeds[i]);
+        for(int i = 0; i progresses.length; i++) {
+            q.push(Pair.of(progresses[i], speeds[i]));
         }
         
-        int count = 0;
-        int day = 1;
-        
-        while(!qProgress.isEmpty()) {
-            int progress = qProgress.peek();
-            int curSpeed = qSpeeds.peek();
+        while(!q.isEmpty()) {
             
-            if(progress + (curSpeed * day) >= 100) {
-                count++;
-                qProgress.poll();
-                qSpeeds.poll();
-            } else if (count > 0) {
-                answer.add(count);
-                count = 0;
-            } else {
-                day++; 
-            }
         }
-        answer.add(count);
+        
         return answer.stream().mapToInt(i -> i).toArray();
     }
 }

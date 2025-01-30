@@ -1,0 +1,1 @@
+select count(name) as COUNT from (select DISTINCT name from animal_ins where name is not null) as t;

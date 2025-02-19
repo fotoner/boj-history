@@ -6,6 +6,7 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         int[] dp = new int[41];
+        dp[0] = 1;
         dp[1] = 1;
         dp[2] = 2;
 
@@ -22,16 +23,10 @@ public class Main {
             int value = Integer.parseInt(br.readLine());
             int length = value - last - 1;
             last = value;
-            if (length == 0) {
-                continue;
-            }
             sum *= dp[length];
         }
 
-        int length = n - last;
-        if (length != 0) {
-            sum *= dp[length];
-        }
+        sum *= dp[n - last];
 
         System.out.println(sum);
     }
